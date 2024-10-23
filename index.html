@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Text Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="montserrat-custom">
+    <div class="top-menu">
+        <a>О приложении</a>
+        <a>О разработчике</a>
+        <a>Отзывы</a>
+    </div>
+    <div class="all-info">
+        <header>
+            <h1>Текстовый редактор</h1>
+            <div>
+                <p>Откройте для себя наш бесплатный 
+                    <br>текстовый редактор, который позволяет
+                    <br>удобно редактировать текст и добавлять 
+                    <br>форматирование по вашему выбору
+                </p>
+            </div>
+        </header>
+        <div class="advantages">
+            <h1>Наши преимущества</h1>
+            <div>
+                <button><span>&lt</span></button>
+                <img src="img1.svg" alt="Современный дизайн">
+                <img src="img2.svg" alt="Удобное форматирование">
+                <button id="next-img"><span>&gt</span></button>
+            </div>
+            <h2>Современный дизайн</h2>
+        </div>
+    </div>
+</body>
+<script>
+let images = Array.from(document.querySelectorAll('.advantages div img'));
+console.log('hello, test');
+let currentIndex = 0;
+
+// Проверка наличия изображений
+if (images.length > 0) {
+    images[currentIndex].style.display = 'block'; // Показать первое изображение
+    for (let img of images) {
+        if (images.indexOf(img) != currentIndex) {
+            img.style.display = 'none'
+        }
+    }
+}
+
+// Обработчик для кнопки "Следующая"
+document.getElementById('next-img').onclick = function() {
+    images[currentIndex].style.display = 'none'; // Скрыть текущее изображение
+    currentIndex = (currentIndex + 1) % images.length; // Обновить индекс
+    images[currentIndex].style.display = 'block'; // Показать следующее изображение
+    console.log('!!')
+    document.querySelector('.advantages h2').textContent = images[currentIndex].getAttribute('alt')
+}
+
+// Обработчик для кнопки "Предыдущая"
+document.getElementById('prev-img').onclick = function() {
+    images[currentIndex].style.display = 'none'; // Скрыть текущее изображение
+    currentIndex = (currentIndex - 1 + images.length) % images.length; // Обновить индекс
+    images[currentIndex].style.display = 'block'; // Показать предыдущее изображение
+}
+
+</script>
+</html>
